@@ -151,6 +151,33 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
         //Student code goes here ...
+        // check rows
+        for(int r=0; r<3;r++){
+            if(grid[r][0] != '-' && grid[r][0] == grid[r][1] && grid[r][1] == grid[r][2]){
+                result = grid[r][0] + " wins!";
+                return result;
+            }
+        }
+//        check columns
+        for(int c=0;c<3;c++){
+            if(grid[0][c] != '-' && grid[0][c] == grid[1][c] && grid[1][c] == grid[2][c]){
+                result = grid[0][c] + " wins!";
+                return result;
+            }
+        }
+//        check diagonals
+        if( grid[1][1] != '-' &&
+                (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) ||
+                (grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2]) ){
+            result = grid[1][1] + " wins!";
+            return result;
+        }
+//        if we made it this far, we've got a tie
+        if(freeSpots == 0){
+            result = "Tie!";
+            return result;
+        }
+//        and this means that we're still in the game
         return result;
     }
 
