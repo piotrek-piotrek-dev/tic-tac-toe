@@ -12,6 +12,11 @@ public class Game {
     private boolean twoPlayer; // true if this is a 2 player game, false if AI playing
     private char [][] grid; // a 2D array of chars representing the game grid
     private int freeSpots; // counts the number of empty spots remaining on the board (starts from 9  and counts down)
+
+    public void setFreeSpots(int freeSpots) {
+        this.freeSpots = freeSpots;
+    }
+
     private static GameUI gui;
 
     /**
@@ -154,14 +159,14 @@ public class Game {
         // check rows
         for(int r=0; r<3;r++){
             if(grid[r][0] != '-' && grid[r][0] == grid[r][1] && grid[r][1] == grid[r][2]){
-                result = grid[r][0] + " wins!";
+                result = grid[r][0] + " wins";
                 return result;
             }
         }
 //        check columns
         for(int c=0;c<3;c++){
             if(grid[0][c] != '-' && grid[0][c] == grid[1][c] && grid[1][c] == grid[2][c]){
-                result = grid[0][c] + " wins!";
+                result = grid[0][c] + " wins";
                 return result;
             }
         }
@@ -169,12 +174,12 @@ public class Game {
         if( grid[1][1] != '-' &&
                 (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) ||
                 (grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2]) ){
-            result = grid[1][1] + " wins!";
+            result = grid[1][1] + " wins";
             return result;
         }
 //        if we made it this far, we've got a tie
         if(freeSpots == 0){
-            result = "Tie!";
+            result = "tie";
             return result;
         }
 //        and this means that we're still in the game
